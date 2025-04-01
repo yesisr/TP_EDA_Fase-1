@@ -1,0 +1,149 @@
+\doxysection{main\+\_\+prog.\+c File Reference}
+\hypertarget{main__prog_8c}{}\label{main__prog_8c}\index{main\_prog.c@{main\_prog.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_funcionario}{Funcionario}}
+\item 
+struct \mbox{\hyperlink{struct_ementa}{Ementa}}
+\item 
+struct \mbox{\hyperlink{struct_escolhas}{Escolhas}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main__prog_8c_ae56b7e6ebd3278dc39f4c20c2e123c91}\label{main__prog_8c_ae56b7e6ebd3278dc39f4c20c2e123c91} 
+\#define {\bfseries MAX\+\_\+\+FUNCIONARIOS}~100
+\item 
+\Hypertarget{main__prog_8c_a439c30c4896872b4fe51d41601565c7b}\label{main__prog_8c_a439c30c4896872b4fe51d41601565c7b} 
+\#define {\bfseries MAX\+\_\+\+UTENTES}~100
+\item 
+\Hypertarget{main__prog_8c_af7ee38b28cbc5136bad9cb324f42e3b9}\label{main__prog_8c_af7ee38b28cbc5136bad9cb324f42e3b9} 
+\#define {\bfseries MAX\+\_\+\+EMENTAS}~100
+\item 
+\Hypertarget{main__prog_8c_a650a929b45480c0875d8c814f442b6ac}\label{main__prog_8c_a650a929b45480c0875d8c814f442b6ac} 
+\#define {\bfseries MAX\+\_\+\+NOME}~50
+\item 
+\Hypertarget{main__prog_8c_a89dcae705c41e5d2afda77a7095310b7}\label{main__prog_8c_a89dcae705c41e5d2afda77a7095310b7} 
+\#define {\bfseries MAX\+\_\+\+PRATO}~100
+\item 
+\Hypertarget{main__prog_8c_a63bf2ce2f2b7130c0f5c7c04fd5dd8f9}\label{main__prog_8c_a63bf2ce2f2b7130c0f5c7c04fd5dd8f9} 
+\#define {\bfseries MAX\+\_\+\+DIA}~10
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main__prog_8c_aafb655e1ba3ffb8c4d04ce73cccca795}\label{main__prog_8c_aafb655e1ba3ffb8c4d04ce73cccca795} 
+void {\bfseries ler\+Funcionarios} ()
+\item 
+\Hypertarget{main__prog_8c_ab77b83946c6c480331ad4a1de80d0528}\label{main__prog_8c_ab77b83946c6c480331ad4a1de80d0528} 
+void {\bfseries ler\+Ementas} ()
+\item 
+\Hypertarget{main__prog_8c_ae7e97054ff0a7c5a40d37cb8357c7b53}\label{main__prog_8c_ae7e97054ff0a7c5a40d37cb8357c7b53} 
+void {\bfseries ler\+Escolhas} ()
+\item 
+\Hypertarget{main__prog_8c_a0ad7ba825429a83f431fefab33f3dda0}\label{main__prog_8c_a0ad7ba825429a83f431fefab33f3dda0} 
+void {\bfseries apresentar\+Dia} (char \texorpdfstring{$\ast$}{*}dia)
+\item 
+\Hypertarget{main__prog_8c_ab5eb0fe4a2106d3e0b8f21c98040ed73}\label{main__prog_8c_ab5eb0fe4a2106d3e0b8f21c98040ed73} 
+void {\bfseries ordenar\+Funcionarios} ()
+\item 
+void \mbox{\hyperlink{main__prog_8c_a11185ef9849cbc40785635d2ef105607}{mostrar\+Refeicoes\+Funcionario}} (int n\+\_\+func)
+\begin{DoxyCompactList}\small\item\em Mostrar Refeição do funcionário Número (n\+\_\+func) \end{DoxyCompactList}\item 
+\Hypertarget{main__prog_8c_aa14cbc31aaa52a585a444ebb02e9a2d9}\label{main__prog_8c_aa14cbc31aaa52a585a444ebb02e9a2d9} 
+void {\bfseries media\+Kcal\+Dia} ()
+\item 
+\Hypertarget{main__prog_8c_a60de64d75454385b23995437f1d72669}\label{main__prog_8c_a60de64d75454385b23995437f1d72669} 
+void {\bfseries start} ()
+\item 
+\Hypertarget{main__prog_8c_a6089d1fc6c15c54bacc740524be6050c}\label{main__prog_8c_a6089d1fc6c15c54bacc740524be6050c} 
+void {\bfseries mostrar\+Funcionarios} ()
+\item 
+\Hypertarget{main__prog_8c_ac808547a76c4a7752ac5df5cecb8e964}\label{main__prog_8c_ac808547a76c4a7752ac5df5cecb8e964} 
+void {\bfseries mostrar\+Ementas} ()
+\item 
+\Hypertarget{main__prog_8c_afe63ddcef96053add8c48e66c925960e}\label{main__prog_8c_afe63ddcef96053add8c48e66c925960e} 
+void {\bfseries mostrar\+Escolhas} ()
+\item 
+\Hypertarget{main__prog_8c_a15c34c61a3ac0fa9e32073c9936cc43a}\label{main__prog_8c_a15c34c61a3ac0fa9e32073c9936cc43a} 
+void {\bfseries atualizar\+Funcionarios} ()
+\item 
+int \mbox{\hyperlink{main__prog_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main__prog_8c_a4b216f6345e92f2a51e13ede844c00d1}\label{main__prog_8c_a4b216f6345e92f2a51e13ede844c00d1} 
+\mbox{\hyperlink{struct_funcionario}{Funcionario}} {\bfseries funcionarios} \mbox{[}MAX\+\_\+\+FUNCIONARIOS\mbox{]}
+\item 
+\Hypertarget{main__prog_8c_ae32df404fd96bca1ed5f83dc8b0c20d8}\label{main__prog_8c_ae32df404fd96bca1ed5f83dc8b0c20d8} 
+\mbox{\hyperlink{struct_ementa}{Ementa}} {\bfseries ementas} \mbox{[}MAX\+\_\+\+EMENTAS\mbox{]}
+\item 
+\Hypertarget{main__prog_8c_ae679d3870c4432aaa3d8d6f7d1c1529b}\label{main__prog_8c_ae679d3870c4432aaa3d8d6f7d1c1529b} 
+\mbox{\hyperlink{struct_escolhas}{Escolhas}} {\bfseries escolhas} \mbox{[}MAX\+\_\+\+UTENTES\mbox{]}
+\item 
+\Hypertarget{main__prog_8c_ac6823bc6430d572765b2c554f350b8bb}\label{main__prog_8c_ac6823bc6430d572765b2c554f350b8bb} 
+int {\bfseries num\+\_\+funcionarios} = 0
+\item 
+\Hypertarget{main__prog_8c_a8fb8cf1e94a4baa23f559ea64669f063}\label{main__prog_8c_a8fb8cf1e94a4baa23f559ea64669f063} 
+int {\bfseries num\+\_\+ementas} = 0
+\item 
+\Hypertarget{main__prog_8c_a7c58b31c314740cf69367bd87623a52e}\label{main__prog_8c_a7c58b31c314740cf69367bd87623a52e} 
+int {\bfseries num\+\_\+escolhas} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Bruno (31496), Diogo Pereira (31513), Dinis Silva (31503) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/12-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main__prog_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{main\_prog.c@{main\_prog.c}!main@{main}}
+\index{main@{main}!main\_prog.c@{main\_prog.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main__prog_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Leitura dos dados
+
+Mostrar funcionários
+
+Mostrar Ementas
+
+Mostrar \doxylink{struct_escolhas}{Escolhas}
+
+Apresenta Dia
+
+Ordena funcionários
+
+Consulta escolha funcionário
+
+Calcula média de kcal/dia\Hypertarget{main__prog_8c_a11185ef9849cbc40785635d2ef105607}\index{main\_prog.c@{main\_prog.c}!mostrarRefeicoesFuncionario@{mostrarRefeicoesFuncionario}}
+\index{mostrarRefeicoesFuncionario@{mostrarRefeicoesFuncionario}!main\_prog.c@{main\_prog.c}}
+\doxysubsubsection{\texorpdfstring{mostrarRefeicoesFuncionario()}{mostrarRefeicoesFuncionario()}}
+{\footnotesize\ttfamily \label{main__prog_8c_a11185ef9849cbc40785635d2ef105607} 
+void mostrar\+Refeicoes\+Funcionario (\begin{DoxyParamCaption}\item[{int}]{n\+\_\+func}{}\end{DoxyParamCaption})}
+
+
+
+Mostrar Refeição do funcionário Número (n\+\_\+func) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+\_\+func} & \\
+\hline
+\end{DoxyParams}

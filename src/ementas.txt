@@ -1,0 +1,5 @@
+2feira;18.12.2024;pescada cozida com batata;180;estufado de vitela;330;sopa de legumes;150;lasanha de vegetais;200
+3feira;19.12.2024;filetes de peixe com arroz;250;frango assado com batata;400;salada mista;120;couscous com legumes;190
+4feira;20.12.2024;salmão grelhado;300;almondegas com esparguete;350;sopa de abóbora;130;quiche vegetariana;220
+5feira;21.12.2024;caldeirada de peixe;280;carne de porco à alentejana;360;creme de brócolos;140;tofu com cogumelos;210
+6feira;22.12.2024;bacalhau à brás;310;rolo de carne com puré;390;sopa de cenoura;150;hambúrguer vegetariano;250
