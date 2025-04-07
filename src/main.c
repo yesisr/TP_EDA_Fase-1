@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2025
  */
 
-#include <stdio.h>
+#include <stdio.h>  
 #include <stdlib.h>
 #include "../include/antena.h"
 #include "func.c"
@@ -39,5 +39,4 @@ int main()
     mostrarCoords(lista);
 
     return 0;
-    s
 }

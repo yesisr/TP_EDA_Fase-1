@@ -1,8 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1743502593.33112 "/Users/user/Downloads/TP_EDA_Fase-1-main/docs/relatório/relatorio.tex" "/Users/user/Downloads/TP_EDA_Fase-1-main/docs/relatório/relatorio.pdf" "relatorio" 1743502593.82277 0
-  "/Users/user/Downloads/TP_EDA_Fase-1-main/docs/relatório/relatorio.aux" 1743502593.78555 1220 0e8a251d7de3bfc1bd841125ea3e77d6 "pdflatex"
-  "/Users/user/Downloads/TP_EDA_Fase-1-main/docs/relatório/relatorio.out" 1743502593.7863 1190 05e2ea84c34628b912dbcb2d9366dfdb "pdflatex"
-  "/Users/user/Downloads/TP_EDA_Fase-1-main/docs/relatório/relatorio.tex" 1743502592.70007 2641 3150c0845ae21a29cf1041cc4fcabde0 ""
+["pdflatex"] 1744046122.94431 "/Users/user/Documents/github/TP_EDA_Fase-1/docs/relatório/relatorio.tex" "relatorio.pdf" "relatorio" 1744046123.44831 0
+  "/Users/user/Documents/github/TP_EDA_Fase-1/docs/relatório/relatorio.tex" 1744046122.86111 2659 ed81c17f923bcc68b66adce3e26463a6 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
@@ -72,9 +70,12 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1732874019.12303 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1732873948 8221437 85c96c90fb1a167fd2ef6a52ceac1c02 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
+  "relatorio.aux" 1744046123.41045 1220 c10c03fdb3add8bfb24b1b82572f26bb "pdflatex"
+  "relatorio.out" 1744046123.41113 1190 05e2ea84c34628b912dbcb2d9366dfdb "pdflatex"
+  "relatorio.tex" 1744046122.86111 2659 ed81c17f923bcc68b66adce3e26463a6 ""
   (generated)
-  "/Users/user/Downloads/TP_EDA_Fase-1-main/docs/relatório/relatorio.aux"
-  "/Users/user/Downloads/TP_EDA_Fase-1-main/docs/relatório/relatorio.log"
-  "/Users/user/Downloads/TP_EDA_Fase-1-main/docs/relatório/relatorio.out"
-  "/Users/user/Downloads/TP_EDA_Fase-1-main/docs/relatório/relatorio.pdf"
+  "relatorio.aux"
+  "relatorio.log"
+  "relatorio.out"
+  "relatorio.pdf"
   (rewritten before read)
