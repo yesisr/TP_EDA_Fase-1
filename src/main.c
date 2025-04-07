@@ -39,4 +39,5 @@ int main()
     mostrarCoords(lista);
 
     return 0;
+    s
 }
