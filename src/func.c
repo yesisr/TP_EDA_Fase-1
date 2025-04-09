@@ -13,7 +13,6 @@
 #include "../include/antena.h"
 #include "../include/func.h"
 
-
 //  variaveis globais para saber as dimenções máximas
 int max_x = 0;
 int max_y = 0;
@@ -140,16 +139,8 @@ Antena *inserirAntena(Antena *lista, Antena *nova)
  * @return
  */
 
-Antena *removerAntena(Antena *lista)
+Antena *removerAntena(Antena *lista, int x, int y)
 {
-    int x, y;
-
-    printf("x: ");
-    scanf("%d", &x);
-
-    printf("y: ");
-    scanf("%d", &y);
-
     if (lista == NULL)
     {
         return NULL;
@@ -273,7 +264,7 @@ void mostrarCoords(Antena *lista)
     if (lista == NULL)
     {
         printf("Nenhuma antena encontrada.\n");
-        
+
         return;
     }
 

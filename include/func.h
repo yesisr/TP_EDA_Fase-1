@@ -60,7 +60,7 @@ Antena *inserirAntena(Antena *lista, Antena *nova);
  * @return
  */
 
-Antena *removerAntena(Antena *lista);
+Antena *removerAntena(Antena *lista, int x, int y);
 
 /**
  * @brief função para verificar a existencia de uma antena em determinadas coordenadas
@@ -70,7 +70,7 @@ Antena *removerAntena(Antena *lista);
  * @return 0 não existe, 1 existe
  */
 
-int eisteAntena(Antena *lista, int x, int y);
+int existeAntena(Antena *lista, int x, int y);
 
 /**
  * @brief procura na lista de antenas se tem efeits nefastos, se tiver cria uma antena(#) para indicar os efeitos

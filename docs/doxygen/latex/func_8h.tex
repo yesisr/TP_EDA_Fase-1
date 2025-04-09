@@ -12,9 +12,9 @@
 \begin{DoxyCompactList}\small\item\em insere uma antena no inicio da lista para os efeitos nefastos \end{DoxyCompactList}\item 
 \mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{func_8h_acf6d91cc52852b7ca078cef459be3d70}{inserir\+Antena}} (\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*}lista, \mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*}nova)
 \begin{DoxyCompactList}\small\item\em insere uma antena no fim da lista \end{DoxyCompactList}\item 
-\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{func_8h_accc8779923e25b26cd63c6e9f3606a2f}{remover\+Antena}} (\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*}lista)
+\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{func_8h_aa1cdc1f00fc740dd0389e5b615b30c23}{remover\+Antena}} (\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*}lista, int x, int y)
 \begin{DoxyCompactList}\small\item\em remove uma antena através das suas coordenadas \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{func_8h_a9a418e874e2491be7af532d90a5834db}{eiste\+Antena}} (\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*}lista, int x, int y)
+int \mbox{\hyperlink{func_8h_a4923f0b08ec5852876a9f2b783ec705a}{existe\+Antena}} (\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*}lista, int x, int y)
 \begin{DoxyCompactList}\small\item\em função para verificar a existencia de uma antena em determinadas coordenadas \end{DoxyCompactList}\item 
 \mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{func_8h_a63e50c36b7f1d4d24beb62c46181f7ae}{adicionar\+Efeito\+Nefasto}} (\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*}lista)
 \begin{DoxyCompactList}\small\item\em procura na lista de antenas se tem efeits nefastos, se tiver cria uma antena(\#) para indicar os efeitos \end{DoxyCompactList}\item 
@@ -96,11 +96,11 @@ Cria antena através dos parametros.
 \begin{DoxyReturn}{Retorna}
 
 \end{DoxyReturn}
-\Hypertarget{func_8h_a9a418e874e2491be7af532d90a5834db}\index{func.h@{func.h}!eisteAntena@{eisteAntena}}
-\index{eisteAntena@{eisteAntena}!func.h@{func.h}}
-\doxysubsubsection{\texorpdfstring{eisteAntena()}{eisteAntena()}}
-{\footnotesize\ttfamily \label{func_8h_a9a418e874e2491be7af532d90a5834db} 
-int eiste\+Antena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*}}]{lista}{, }\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})}
+\Hypertarget{func_8h_a4923f0b08ec5852876a9f2b783ec705a}\index{func.h@{func.h}!existeAntena@{existeAntena}}
+\index{existeAntena@{existeAntena}!func.h@{func.h}}
+\doxysubsubsection{\texorpdfstring{existeAntena()}{existeAntena()}}
+{\footnotesize\ttfamily \label{func_8h_a4923f0b08ec5852876a9f2b783ec705a} 
+int existe\+Antena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*}}]{lista}{, }\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})}
 
 
 
@@ -173,11 +173,11 @@ exibe as coordenadas das antenas tendo em conta os efeitos nefastos se existirem
 {\em lista} & \\
 \hline
 \end{DoxyParams}
-\Hypertarget{func_8h_accc8779923e25b26cd63c6e9f3606a2f}\index{func.h@{func.h}!removerAntena@{removerAntena}}
+\Hypertarget{func_8h_aa1cdc1f00fc740dd0389e5b615b30c23}\index{func.h@{func.h}!removerAntena@{removerAntena}}
 \index{removerAntena@{removerAntena}!func.h@{func.h}}
 \doxysubsubsection{\texorpdfstring{removerAntena()}{removerAntena()}}
-{\footnotesize\ttfamily \label{func_8h_accc8779923e25b26cd63c6e9f3606a2f} 
-\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*} remover\+Antena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*}}]{lista}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{func_8h_aa1cdc1f00fc740dd0389e5b615b30c23} 
+\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*} remover\+Antena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_antena}{Antena}} \texorpdfstring{$\ast$}{*}}]{lista}{, }\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})}
 
 
 

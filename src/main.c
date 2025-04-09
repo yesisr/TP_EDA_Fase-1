@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2025
  */
 
-#include <stdio.h>  
+#include <stdio.h>
 #include <stdlib.h>
 #include "../include/antena.h"
 #include "func.c"
@@ -32,8 +32,8 @@ int main()
 
     printf("\nRemoção de antena \n");
 
-    //  remover antenas com coords pedidas pelo user
-    lista = removerAntena(lista);
+    //  remover antenas
+    lista = removerAntena(lista, 1, 0);
 
     //  mostra antenas após remoção
     mostrarCoords(lista);

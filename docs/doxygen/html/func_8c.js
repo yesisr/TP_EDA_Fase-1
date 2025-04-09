@@ -7,5 +7,5 @@ var func_8c =
     [ "inserirAntena", "func_8c.html#acf6d91cc52852b7ca078cef459be3d70", null ],
     [ "inserirNefasto", "func_8c.html#a0105a3f274c9438b7dc59f1d029e2a00", null ],
     [ "mostrarCoords", "func_8c.html#aa625a29cdc69301527814e5151d5535c", null ],
-    [ "removerAntena", "func_8c.html#accc8779923e25b26cd63c6e9f3606a2f", null ]
+    [ "removerAntena", "func_8c.html#aa1cdc1f00fc740dd0389e5b615b30c23", null ]
 ];

@@ -2,93 +2,270 @@
 \usepackage[portuguese]{babel}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{algorithm}  
+\usepackage{tikz}
 
-\title{Relatório de Projeto EDA - Primeira Fase}
+\title{Relatório de Projeto EDA - Primeira Fase: Implementação de Listas Ligadas para Simulação de Efeitos de Antenas}
 \author{Bruno Paiva \\ a31496@alunos.ipca.pt}
 \date{\today}
 
 \begin{document}
-
 \maketitle
+
+\newpage
+\begin{abstract}
+    Este relatório descreve o desenvolvimento da primeira fase do projeto da unidade curricular de Estruturas de Dados Avançadas, que consistiu na implementação de um sistema de simulação de efeitos de antenas utilizando listas ligadas em linguagem C.\\
+    O trabalho aborda a modelação do problema, a estrutura de dados desenvolvida, as funcionalidades implementadas e os resultados obtidos.\\
+    A solução proposta permite carregar dados de antenas a partir de ficheiros, gerir dinamicamente a lista de antenas, calcular automaticamente zonas de efeito nefasto e apresentar os resultados de forma organizada. O projeto demonstra a aplicação prática de conceitos fundamentais de estruturas de dados dinâmicas e boas práticas de desenvolvimento de software.
+    \end{abstract}
+\newpage
+\tableofcontents
 \newpage
 
-\section{Objetivo do Trabalho}
-Este projeto teve como objetivos principais:
+\section{Introdução}
+\subsection{Motivação}
+O presente trabalho surge no âmbito da unidade curricular de Estruturas de Dados Avançadas do curso de Licenciatura em Engenharia de Sistemas Informáticos do IPCA.\\
+A motivação para este projeto prende-se com a necessidade de consolidar conhecimentos sobre estruturas de dados dinâmicas, especificamente listas ligadas, e sua aplicação na resolução de problemas computacionais complexos.
+
+\subsection{Objetivos}
+Os principais objetivos deste projeto foram:
 \begin{itemize}
-    \item Praticar o uso de listas ligadas em C
-    \item Aprender a ler dados de arquivos
-    \item Organizar o código em funções bem definidas
-    \item Documentar o projeto usando Doxygen
+    \item Desenvolver uma estrutura de dados eficiente para representar antenas e seus efeitos
+    \item Implementar operações básicas de manipulação de listas ligadas (inserção, remoção, pesquisa)
+    \item Processar ficheiros de entrada contendo configurações de antenas
+    \item Calcular automaticamente zonas de interferência entre antenas
+    \item Apresentar resultados de forma clara e organizada
+    \item Documentar o código seguindo boas práticas de engenharia de software
 \end{itemize}
+
+\subsection{Metodologia}
+A metodologia adotada seguiu as seguintes etapas:
+\begin{enumerate}
+    \item Análise do problema e requisitos
+    \item Desenho da estrutura de dados
+    \item Implementação incremental das funcionalidades
+    \item Testes unitários e integração
+    \item Documentação do código
+    \item Redação do relatório técnico
+\end{enumerate}
+
+\subsection{Estrutura do Documento}
+O presente documento está organizado da seguinte forma: a Secção~\ref{sec:problema} descreve o problema em detalhe; a Secção~\ref{sec:solucao} apresenta a solução implementada; a Secção~\ref{sec:resultados} mostra exemplos de funcionamento; e finalmente a Secção~\ref{sec:conclusao} sumariza as conclusões e trabalhos futuros.
+
+\newpage 
 
 \section{Descrição do Problema}
-O projeto simula uma cidade com várias antenas de transmissão, onde:
+\label{sec:problema}
+
+O problema consiste em simular o comportamento de múltiplas antenas de transmissão distribuídas numa área geográfica representada por uma matriz bidimensional. Cada antena possui as seguintes características:
+
 \begin{itemize}
-    \item Cada antena possui:
+    \item \textbf{Posição}: definida por coordenadas (x,y) na matriz
+    \item \textbf{Frequência}: representada por um caractere (A-Z)
+\end{itemize}
+
+O efeito nefasto ocorre quando duas antenas com a mesma frequência estão alinhadas e uma está exatamente ao dobro da distância da outra em relação a um ponto comum. Matematicamente, para duas antenas A1(x1,y1) e A2(x2,y2) com mesma frequência, existem dois pontos de efeito nefasto:
+
+\begin{itemize}
+    \item Ponto 1: (2x1 - x2, 2y1 - y2)
+    \item Ponto 2: (2x2 - x1, 2y2 - y1)
+\end{itemize}
+
+Estes pontos podem estar dentro ou fora da área da matriz considerada. Quando múltiplos pares de antenas estão presentes, todos os possíveis pontos de efeito nefasto devem ser calculados.
+
+\subsection{Requisitos Funcionais}
+\begin{itemize}
+    \item Ler configurações de antenas a partir de ficheiro texto
+    \item Armazenar antenas em estrutura de dados dinâmica
+    \item Permitir inserção e remoção manual de antenas
+    \item Calcular automaticamente todos os pontos de efeito nefasto
+    \item Apresentar resultados em formato tabular
+    \item Gerar documentação automática do código
+\end{itemize}
+
+\subsection{Requisitos Não Funcionais}
+\begin{itemize}
+    \item Implementação em linguagem C
+    \item Uso obrigatório de listas ligadas
+    \item Modularização do código
+    \item Documentação com Doxygen
+    \item Validação de entrada de dados
+\end{itemize}
+
+\section{Solução Implementada}
+\label{sec:solucao}
+
+\subsection{Estrutura de Dados}
+A estrutura de dados principal foi implementada como uma lista ligada simples, conforme o seguinte código:
+
+\begin{verbatim}
+/**
+ * @struct Antena
+ * @brief Estrutura que representa uma antena no sistema
+ */
+typedef struct Antena {
+    int x;                  /**< Coordenada x na matriz */
+    int y;                  /**< Coordenada y na matriz */
+    char frequencia;        /**< Frequência de operação (A-Z) */
+    struct Antena *next;    /**< Ponteiro para próxima antena */
+} Antena;
+
+/**
+ * @struct PontoEfeito
+ * @brief Estrutura que representa um ponto com efeito nefasto
+ */
+typedef struct PontoEfeito {
+    int x;                  /**< Coordenada x do ponto */
+    int y;                  /**< Coordenada y do ponto */
+    struct PontoEfeito *next; /**< Ponteiro para próximo ponto */
+} PontoEfeito;
+\end{verbatim}
+
+\subsection{Arquitetura do Sistema}
+O sistema foi organizado nos seguintes módulos principais:
+
+\begin{itemize}
+    \item \textbf{main.c}: Contém a lógica principal do programa e interface com o utilizador
+    \item \textbf{antenas.h}: Estrutura dinâmica das antenas
+    \item \textbf{func.c}: Contém as funções do programa
+    \item \textbf{antenas.txt}: Ficheiro de texto para a matriz de antenas
+\end{itemize}
+
+\subsection{Principais Algoritmos}
+\subsubsection{Carregamento de Antenas a partir de Ficheiro}
+O algoritmo de carregamento segue os seguintes passos:
+\begin{enumerate}
+    \item Abrir ficheiro em modo leitura
+    \item Ler dimensões da matriz
+    \item Para cada linha subsequente:
+    \begin{enumerate}
+        \item Ler caracteres da linha
+        \item Para cada caractere diferente de '.':
+        \begin{enumerate}
+            \item Criar nova antena com coordenadas (linha,coluna)
+            \item Inserir na lista ligada
+        \end{enumerate}
+    \end{enumerate}
+    \item Fechar ficheiro
+\end{enumerate}
+
+\subsubsection{Cálculo de Pontos de Efeito Nefasto}
+
+Para cada par de antenas com mesma frequência:
+
+\begin{enumerate}
+    \item \textbf{Calculo das diferenças}:
     \begin{itemize}
-        \item Posição no mapa (coordenadas X e Y)
-        \item Frequência de operação (representada por um caractere)
+        \item $\Delta x = x_2 - x_1$
+        \item $\Delta y = y_2 - y_1$
     \end{itemize}
     
-    \item Quando duas antenas com a \textbf{mesma frequência} estão alinhadas:
+    \item \textbf{Pontos de efeito nefasto}:
     \begin{itemize}
-        \item Geram \textbf{efeitos nefastos} em certas posições
-        \item Esses efeitos ocorrem em pontos específicos do alinhamento
+        \item Ponto anterior: $(x_1 - \Delta x,\ y_1 - \Delta y)$
+        \item Ponto posterior: $(x_2 + \Delta x,\ y_2 + \Delta y)$
     \end{itemize}
+    
+    \item \textbf{Verificação do resultado}:
+    \begin{itemize}
+        \item Descartar pontos que coincidam com antenas existentes
+        \item Ignorar coordenadas fora dos limites da matriz
+    \end{itemize}
+\end{enumerate}
+\newpage
+\textbf{Exemplo prático}:
+Para duas antenas em $(2,2)$ e $(3,3)$:
+\begin{itemize}
+    \item Diferenças: $\Delta x = 1$, $\Delta y = 1$
+    \item Pontos calculados:
+    \begin{itemize}
+        \item $(1,1)$
+        \item $(4,4)$
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\footnotesize}]
+    \draw[gray!20] (0,0) grid (5,5);
+    
+    \node at (1.5,3.5) {A};  
+    \node at (2.5,2.5) {A};  
+
+    \node at (0.5,4.5) {\#};  
+    \node at (3.5,1.5) {\#};  
+
+    \foreach \x in {1,...,5}
+        \node at (\x-0.5,-0.3) {\x};
+    \foreach \y in {1,...,5}
+        \node at (-0.3,5.5-\y) {\y};
+\end{tikzpicture}
+\caption{Exemplo visual do cálculo (matriz 5x5)}
+\end{figure}
+\newpage
+
+\section{Exemplos de Funcionamento}
+\label{sec:resultados}
+
+\subsection{Caso de Teste}
+Para o seguinte mapa de entrada:
+\begin{verbatim}
+.....
+.A.B.
+..A..
+.....
+.....
+\end{verbatim}
+
+O programa produz a seguinte saída:
+
+\begin{verbatim}
+Lista de Antenas:
+Antena em (2, 2) - Frequência: A
+Antena em (4, 2) - Frequência: B
+Antena em (3, 3) - Frequência: A
+
+Deteção de efeitos nefasto 
+
+Lista de Antenas:
+Efeito Nefasto em (4, 4)
+Efeito Nefasto em (1, 1)
+Antena em (2, 2) - Frequência: A
+Antena em (4, 2) - Frequência: B
+Antena em (3, 3) - Frequência: A
+\end{verbatim}
+
+\newpage
+
+
+\section{Conclusões e Trabalho Futuro}
+\label{sec:conclusao}
+
+Através deste projeto foi possível consolidar conhecimentos fundamentais sobre estruturas de dados dinâmicas, especificamente listas ligadas, e sua aplicação na resolução de problemas reais\\
+
+Os principais conhecimentos desenvolvidos foram:
+\begin{itemize}
+    \item Domínio da manipulação de listas ligadas em C
+    \item Técnicas avançadas de processamento de ficheiros
+    \item Implementação de algoritmos geométricos para cálculo de posições
+    \item Importância da modularização e documentação de código
+    \item Habilidades de criação de relatórios
+\end{itemize}
+
+Como trabalho futuro, sugere-se:
+\begin{itemize}
+    \item Implementação de inserção ordenada de antenas
+    \item Criação de uma lista dedicada para o gerenciamento de Efeitos Nefastos
+    \item Armazenamento de resultados em formato binário
+    \item Integração com a segunda fase do projeto
 \end{itemize}
 
 \newpage
 
-\section{Solução Implementada}
-\subsection{Estrutura de Dados Principal}
-\begin{verbatim}
-typedef struct Antena {
-    int x, y;           // Posição (coordenadas)
-    char frequencia;    // Frequência (A-Z)
-    struct Antena *next;// Próxima antena na lista
-} Antena;
-\end{verbatim}
+\section{Repositório e Documentação}
+Todo o código está disponível no repositório GitHub: \url{https://github.com/yesisr/TP_EDA_Fase-1}
 
-\subsection{Principais Funcionalidades}
-\begin{itemize}
-    \item \textbf{Carregar antenas}: Lê um arquivo texto com o mapa de antenas
-    \item \textbf{Inserir/Remover}: Gerencia antenas individualmente
-    \item \textbf{Detectar efeitos nefastos}: Calcula automaticamente as zonas com efeito nefasto
-    \item \textbf{Exibir resultados}: Mostra uma tabela com:
-    \begin{itemize}
-        \item Todas as antenas
-        \item Locais com efeitos nefastos
-    \end{itemize}
-\end{itemize}
-
-\section{Exemplo de Funcionamento}
-Para este mapa:
-\begin{verbatim}
-    .....
-    .A.B.
-    ..A..
-    .....
-\end{verbatim}
-
-O programa detecta:
-\begin{itemize}
-    \item 2 antenas na frequência 'A'
-    \item 2 locais com efeito nefasto entre elas
-    \item 1 antena na frequência 'B' (sem efeitos)
-\end{itemize}
-
-\section{Conclusão}
-Através deste projeto pude aprender e praticar:
-\begin{itemize}
-    \item Como criar e gerenciar listas ligadas
-    \item Técnicas para processar arquivos
-    \item Métodos para calcular posições em matrizes
-    \item Boas práticas de documentação
-\end{itemize}
-
-\section{GitHub}
-Link do repositório git
-
-\url{https://github.com/yesisr/TP_EDA_Fase-1}
+A documentação do código foi gerada com Doxygen e está incluída no repositório na pasta \texttt{docs/doxygen}.
 
 \end{document}
