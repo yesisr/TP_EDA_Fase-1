@@ -1,0 +1,237 @@
+\doxysection{func.\+c}
+\hypertarget{func_8c_source}{}\label{func_8c_source}\index{src/func.c@{src/func.c}}
+\mbox{\hyperlink{func_8c}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{antena_8h}{../include/antena.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{func_8h}{../include/func.h}}"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ variaveis\ globais\ para\ saber\ as\ dimenções\ máximas}}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{int}\ max\_x\ =\ 0;}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{int}\ max\_y\ =\ 0;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#pragma\ region\ Ficheiros}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \mbox{\hyperlink{struct_antena}{Antena}}\ *\mbox{\hyperlink{func_8c_a2aea4bc31a61b06320c0c7994d0ff24b}{carregarFicheiro}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *nomeFicheiro)}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ FILE\ *file\ =\ fopen(nomeFicheiro,\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ ficheiro!\(\backslash\)n"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{struct_antena}{Antena}}\ *lista\ =\ NULL;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{char}\ linha[100];}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ +1\ porque\ coordenadas\ >\ 0}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{int}\ y\ =\ 1;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{while}\ (fgets(linha,\ \textcolor{keyword}{sizeof}(linha),\ file)\ !=\ NULL)}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ linha[strcspn(linha,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}})]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};\ \textcolor{comment}{//\ retira\ o\ caractere\ de\ mudança\ de\ linha\ da\ string}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tam\_linha\ =\ strlen(linha);\ \ \ \ \ \ \textcolor{comment}{//\ \ conta\ as\ colunas\ da\ primeira\ linha}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ impede\ de\ atualizar\ várias\ vezes\ (só\ atualiza\ na\ primeira)}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (max\_y\ ==\ 0)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ max\_x\ =\ tam\_linha;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ conta\ as\ linhas}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ max\_y++;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ linha[x]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'};\ x++)}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (linha[x]\ !=\ \textcolor{charliteral}{'.'})}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lista\ =\ \mbox{\hyperlink{func_8c_acf6d91cc52852b7ca078cef459be3d70}{inserirAntena}}(lista,\ \mbox{\hyperlink{func_8c_a6a360a59b0be54c0dcb811c6a994004b}{criarAntena}}(x\ +\ 1,\ y,\ linha[x]));\ \textcolor{comment}{//\ +1\ porque\ coordenadas\ >\ 0}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ y++;}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ lista;}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#pragma\ region\ Antenas}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \mbox{\hyperlink{struct_antena}{Antena}}\ *\mbox{\hyperlink{func_8c_a6a360a59b0be54c0dcb811c6a994004b}{criarAntena}}(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{char}\ freq)}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{struct_antena}{Antena}}\ *temp;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ temp\ =\ (\mbox{\hyperlink{struct_antena}{Antena}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_antena}{Antena}}));}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{if}\ (temp\ !=\ NULL)}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ temp-\/>freq\ =\ freq;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ temp-\/>x\ =\ x;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ temp-\/>y\ =\ y;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ temp-\/>next\ =\ NULL;}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return}\ temp;}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \mbox{\hyperlink{struct_antena}{Antena}}\ *\mbox{\hyperlink{func_8c_a0105a3f274c9438b7dc59f1d029e2a00}{inserirNefasto}}(\mbox{\hyperlink{struct_antena}{Antena}}\ *lista,\ \mbox{\hyperlink{struct_antena}{Antena}}\ *nova)}
+\DoxyCodeLine{00109\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ nova-\/>next\ =\ lista;}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ nova;}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \mbox{\hyperlink{struct_antena}{Antena}}\ *\mbox{\hyperlink{func_8c_acf6d91cc52852b7ca078cef459be3d70}{inserirAntena}}(\mbox{\hyperlink{struct_antena}{Antena}}\ *lista,\ \mbox{\hyperlink{struct_antena}{Antena}}\ *nova)}
+\DoxyCodeLine{00122\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{if}\ (lista\ ==\ NULL)}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nova;}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{struct_antena}{Antena}}\ *temp\ =\ lista;}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{while}\ (temp-\/>next\ !=\ NULL)}
+\DoxyCodeLine{00129\ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ temp\ =\ temp-\/>next;}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ temp-\/>next\ =\ nova;}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{return}\ lista;}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \mbox{\hyperlink{struct_antena}{Antena}}\ *\mbox{\hyperlink{func_8c_aa1cdc1f00fc740dd0389e5b615b30c23}{removerAntena}}(\mbox{\hyperlink{struct_antena}{Antena}}\ *lista,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{if}\ (lista\ ==\ NULL)}
+\DoxyCodeLine{00145\ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{struct_antena}{Antena}}\ *temp\ =\ lista;}
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{struct_antena}{Antena}}\ *tempAnterior\ =\ temp;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (lista-\/>x\ ==\ x\ \&\&\ lista-\/>y\ ==\ y)}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ valor\ encontra-\/se\ no\ inicio\ da\ lista}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ lista\ =\ lista-\/>next;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ free(temp);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lista;}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{//\ \ loop\ até\ encontrar\ a\ exata\ antena}}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{while}\ (temp\ \&\&\ !(temp-\/>x\ ==\ x\ \&\&\ temp-\/>y\ ==\ y))}
+\DoxyCodeLine{00162\ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ tempAnterior\ =\ temp;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ temp\ =\ temp-\/>next;}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{//\ \ verifica\ se\ existe}}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordflow}{if}\ (temp\ !=\ NULL)}
+\DoxyCodeLine{00168\ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ tempAnterior-\/>next\ =\ temp-\/>next;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ free(temp);}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{return}\ lista;}
+\DoxyCodeLine{00174\ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{func_8c_a4923f0b08ec5852876a9f2b783ec705a}{existeAntena}}(\mbox{\hyperlink{struct_antena}{Antena}}\ *lista,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)}
+\DoxyCodeLine{00185\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{while}\ (lista)}
+\DoxyCodeLine{00187\ \ \ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lista-\/>x\ ==\ x\ \&\&\ lista-\/>y\ ==\ y)}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ lista\ =\ lista-\/>next;}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00195\ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \mbox{\hyperlink{struct_antena}{Antena}}\ *\mbox{\hyperlink{func_8c_a63e50c36b7f1d4d24beb62c46181f7ae}{adicionarEfeitoNefasto}}(\mbox{\hyperlink{struct_antena}{Antena}}\ *lista)}
+\DoxyCodeLine{00204\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \mbox{\hyperlink{struct_antena}{Antena}}\ *atual\ =\ lista;}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{while}\ (atual)}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_antena}{Antena}}\ *proximo\ =\ atual-\/>next;}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (proximo)}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ precorre\ a\ lista\ até\ encontrar\ duas\ antenas\ com\ a\ mesma\ frequencia}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (atual-\/>freq\ ==\ proximo-\/>freq)}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ distancia\ de\ coordenadas\ entre\ a\ proxima\ antena\ e\ atual}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ para\ calcular\ o\ efeito\ nefasto}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ exmpl:\ 2,2\ -\/\ 1,1\ =\ 1,1}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ diferencaX\ =\ proximo-\/>x\ -\/\ atual-\/>x;}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ diferencaY\ =\ proximo-\/>y\ -\/\ atual-\/>y;}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ coordenadas\ do\ primeiro\ efeito\ nefasto}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ exmpl:\ 1,1\ -\/\ 1,1\ =\ 0,0}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ efeitoX1\ =\ atual-\/>x\ -\/\ diferencaX;}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ efeitoY1\ =\ atual-\/>y\ -\/\ diferencaY;}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ coordenadas\ do\ segundo\ efeito\ nefasto}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ exmpl:\ 2,2\ +\ 1,1\ =\ 3,3}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ efeitoX2\ =\ proximo-\/>x\ +\ diferencaX;}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ efeitoY2\ =\ proximo-\/>y\ +\ diferencaY;}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ verifica\ se\ as\ coordenadas\ são\ possiveis\ e\ se\ existe\ antena\ nas\ coordenadas}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (efeitoX1\ >=\ 1\ \&\&\ efeitoX1\ <=\ max\_x\ \&\&}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ efeitoY1\ >=\ 1\ \&\&\ efeitoY1\ <=\ max\_y\ \&\&}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\mbox{\hyperlink{func_8c_a4923f0b08ec5852876a9f2b783ec705a}{existeAntena}}(lista,\ efeitoX1,\ efeitoY1))}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ cria\ efeito\ antes\ da\ primeira\ antena}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lista\ =\ \mbox{\hyperlink{func_8c_a0105a3f274c9438b7dc59f1d029e2a00}{inserirNefasto}}(lista,\ \mbox{\hyperlink{func_8c_a6a360a59b0be54c0dcb811c6a994004b}{criarAntena}}(efeitoX1,\ efeitoY1,\ \textcolor{charliteral}{'\#'}));}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ verifica\ se\ as\ coordenadas\ são\ possiveis\ e\ se\ existe\ antena\ nas\ coordenadas}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (efeitoX2\ >=\ 1\ \&\&\ efeitoX2\ <=\ max\_x\ \&\&}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ efeitoY2\ >=\ 1\ \&\&\ efeitoY2\ <=\ max\_y\ \&\&}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\mbox{\hyperlink{func_8c_a4923f0b08ec5852876a9f2b783ec705a}{existeAntena}}(lista,\ efeitoX2,\ efeitoY2))}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ cria\ efeito\ depois\ da\ segunda\ antena}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lista\ =\ \mbox{\hyperlink{func_8c_a0105a3f274c9438b7dc59f1d029e2a00}{inserirNefasto}}(lista,\ \mbox{\hyperlink{func_8c_a6a360a59b0be54c0dcb811c6a994004b}{criarAntena}}(efeitoX2,\ efeitoY2,\ \textcolor{charliteral}{'\#'}));}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ proximo\ =\ proximo-\/>next;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ atual\ =\ atual-\/>next;}
+\DoxyCodeLine{00252\ \ \ \ \ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{return}\ lista;}
+\DoxyCodeLine{00255\ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{func_8c_aa625a29cdc69301527814e5151d5535c}{mostrarCoords}}(\mbox{\hyperlink{struct_antena}{Antena}}\ *lista)}
+\DoxyCodeLine{00263\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keywordflow}{if}\ (lista\ ==\ NULL)}
+\DoxyCodeLine{00265\ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Nenhuma\ antena\ encontrada.\(\backslash\)n"{}});}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00269\ \ \ \ \ \}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nLista\ de\ Antenas:\(\backslash\)n"{}});}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordflow}{while}\ (lista)}
+\DoxyCodeLine{00273\ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ se\ a\ freq\ for\ um\ \#\ então\ é\ um\ efeito\ nefasto}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lista-\/>freq\ ==\ \textcolor{charliteral}{'\#'})}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Efeito\ Nefasto\ em\ (\%d,\ \%d)\(\backslash\)n"{}},\ lista-\/>x,\ lista-\/>y);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Antena\ em\ (\%d,\ \%d)\ -\/\ Frequência:\ \%c\(\backslash\)n"{}},\ lista-\/>x,\ lista-\/>y,\ lista-\/>freq);}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ lista\ =\ lista-\/>next;}
+\DoxyCodeLine{00280\ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\#pragma\ endregion}}
+
+\end{DoxyCode}
